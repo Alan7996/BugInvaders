@@ -6,6 +6,8 @@ public class BombRingController : MonoBehaviour
 {
     private Rigidbody2D rb;
 
+    public int bombDmg = 4;
+
     [SerializeField]
     private float torque = 60;
 
@@ -29,5 +31,13 @@ public class BombRingController : MonoBehaviour
         transform.localScale += incScale;
 
         if (transform.localScale.x > maxScale.x && transform.localScale.y > maxScale.y) Destroy(this.gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<BodyBugController>().TakeDamage(bombDmg);
+        }
     }
 }

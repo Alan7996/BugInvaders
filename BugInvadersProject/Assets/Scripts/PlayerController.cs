@@ -42,6 +42,20 @@ public class PlayerController : MonoBehaviour
     private float fireRate = 0.1f;
     private float currTime = 0f;
 
+    public static PlayerController instance
+    {
+        get
+        {
+            if (m_instance == null)
+            {
+                m_instance = FindObjectOfType<PlayerController>();
+            }
+            return m_instance;
+        }
+    }
+
+    private static PlayerController m_instance;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -151,5 +165,11 @@ public class PlayerController : MonoBehaviour
         if (bombCount == 0) return;
         bombCount--;
         Instantiate(bombRingPrefab, playerPos, Quaternion.identity);
+    }
+
+    public void TakeDamage()
+    {
+        GameManager.instance.OnGameOver();
+        //Destroy(this.gameObject);
     }
 }

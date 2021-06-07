@@ -7,20 +7,25 @@ public class BodyBugController : MonoBehaviour
     private int score = 100;
     private int hP;
     private float bugSpeed = 10f;
-    public GameObject target;
+    public Transform target;
     private Vector3 direction;
+    private Vector3 tempPlace;
 
-    public void Initialize(GameObject targetPlayer)
+    public void Initialize(Transform targetPlayer)
     {
         hP = 2;
         target = targetPlayer;
-        direction = (target.transform.position - transform.position).normalized;
+        direction = (target.position - transform.position).normalized;
 
         float rot_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
     }
 
-    // Update is called once per frame
+    private void Start()
+    {
+        tempPlace = new Vector3(-100, -100, 0);
+    }
+
     void Update()
     {
         transform.position += direction * bugSpeed * Time.deltaTime;
@@ -28,22 +33,20 @@ public class BodyBugController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Bullet")
+        if (collision.tag == "Player")
         {
-            hP -= collision.gameObject.GetComponent<BulletController>().dmg;
-            Destroy(collision.gameObject);
-        } else if (collision.tag == "Bomb")
-        {
-            hP -= 4;
-        } else if (collision.tag == "Player")
-        {
-            Destroy(collision.gameObject);
+            PlayerController.instance.TakeDamage();
         }
+    }
 
+    public void TakeDamage(int dmg)
+    {
+        hP -= dmg;
         if (hP <= 0)
         {
+            this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
             GameManager.instance.IncScore(score);
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 }

@@ -22,12 +22,15 @@ public class GameManager : MonoBehaviour
     private static GameManager m_instance;
 
     public TMP_Text scoreText;
+    // temporary usage of highscore text to check funtionality
+    public TMP_Text highscoreText;
 
     private int score = 0;
 
     private void Start()
     {
         scoreText.text = "SCORE : " + score;
+        highscoreText.enabled = false;
     }
 
     void Update()
@@ -45,5 +48,18 @@ public class GameManager : MonoBehaviour
     {
         score += inc;
         scoreText.text = "SCORE : " + score;
+    }
+
+    public void OnGameOver()
+    {
+        int highscore = PlayerPrefs.GetInt("Highscore");
+        if (score > highscore)
+        {
+            highscore = score;
+            PlayerPrefs.SetInt("Highscore", score);
+        }
+
+        highscoreText.text = highscore.ToString();
+        highscoreText.enabled = true;
     }
 }

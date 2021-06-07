@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject player;
+    public Transform player;
 
     public GameObject bodyBug1Prefab;
+
+    // total 5 spawn points
+    public GameObject[] spawnPoints;
 
     private float windowWidth = 15;
 
@@ -35,9 +38,7 @@ public class EnemySpawner : MonoBehaviour
 
         while (!stop)
         {
-            Vector3 spawnPosition = new Vector3(Random.Range(-windowWidth/2, windowWidth/2), 0, 0);
-
-            BodyBugController enemy = Object.Instantiate(bodyBug1Prefab, spawnPosition + transform.position, Quaternion.identity).GetComponent<BodyBugController>();
+            BodyBugController enemy = Object.Instantiate(bodyBug1Prefab, spawnPoints[Random.Range(0,5)].transform.position, Quaternion.identity).GetComponent<BodyBugController>();
             enemy.Initialize(player);
 
             yield
