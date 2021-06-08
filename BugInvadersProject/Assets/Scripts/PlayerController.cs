@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*public enum MechType
-{
-    Gun,
-    Missile,
-    Laser
-}*/
-
 public class PlayerController : MonoBehaviour
 {
+    public enum MechType
+    {
+        Gun,
+        Missile,
+        Laser
+    }
+
+    public MechType mechType;
     // 0 = gun, 1 = missile, 2 = laser
-    public GameObject[] bulletPrefabs;
-    private GameObject currBullet;
+    //public GameObject[] bulletPrefabs;
+    //private GameObject currBullet;
 
     Vector2 bulletPosLeft;
     Vector2 bulletPosRight;
@@ -100,21 +101,21 @@ public class PlayerController : MonoBehaviour
         switch (type)
         {
             case 0:
-                currBullet = bulletPrefabs[0];
+                mechType = MechType.Gun;
                 mechBodies[0].SetActive(true);
                 mechBodies[1].SetActive(false);
                 mechBodies[2].SetActive(false);
                 fireRate = 0.1f;
                 break;
             case 1:
-                currBullet = bulletPrefabs[1];
+                mechType = MechType.Missile;
                 mechBodies[0].SetActive(false);
                 mechBodies[1].SetActive(true);
                 mechBodies[2].SetActive(false);
                 fireRate = 0.2f;
                 break;
             case 2:
-                currBullet = bulletPrefabs[2];
+                mechType = MechType.Laser;
                 mechBodies[0].SetActive(false);
                 mechBodies[1].SetActive(false);
                 mechBodies[2].SetActive(true);
@@ -131,16 +132,11 @@ public class PlayerController : MonoBehaviour
         if (currTime < fireRate) return;
         currTime = 0;
 
-        if (!currBullet)
-        {
-            SetMech(PlayerPrefs.GetInt("mechType"));
-        }
-
         bulletPosLeft = new Vector2(playerPos.x - 1.5f, playerPos.y + 2);
         bulletPosRight = new Vector2(playerPos.x + 1.5f, playerPos.y + 2);
-        
-        Instantiate(currBullet, bulletPosLeft, Quaternion.identity);
-        Instantiate(currBullet, bulletPosRight, Quaternion.identity);
+
+        BulletManager.instance.FireBullet((int)mechType, bulletPosLeft);
+        BulletManager.instance.FireBullet((int)mechType, bulletPosRight);
     }
 
     private void Bomb()

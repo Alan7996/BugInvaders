@@ -36,6 +36,9 @@ public class BodyBugController : MonoBehaviour
         if (collision.tag == "Player")
         {
             PlayerController.instance.TakeDamage();
+        } else if (collision.tag == "DetectionWall")
+        {
+            this.gameObject.SetActive(false);
         }
     }
 
