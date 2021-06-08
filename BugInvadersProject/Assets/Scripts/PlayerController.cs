@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MechType
+/*public enum MechType
 {
     Gun,
     Missile,
     Laser
-}
+}*/
 
 public class PlayerController : MonoBehaviour
 {
-    private MechType currMechType;
-
     // 0 = gun, 1 = missile, 2 = laser
     public GameObject[] bulletPrefabs;
     private GameObject currBullet;
@@ -22,13 +20,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject bombRingPrefab;
 
-    // 0 = head, 1 = body, 2 = left arm, 3 = right arm
-    public GameObject[] mechBodyParts;
-    private SpriteRenderer mechHeadRenderer;
-    private SpriteRenderer mechBodyRenderer;
-    private SpriteRenderer mechLeftRenderer;
-    private SpriteRenderer mechRightRenderer;
-    public Sprite[] mechSprites;
+    // 0 = gun, 1 = missile, 2 = laser
+    public GameObject[] mechBodies;
 
     public GameObject player;
     private Rigidbody2D rb;
@@ -60,13 +53,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = player.GetComponent<Rigidbody2D>();
-        mechHeadRenderer = mechBodyParts[0].GetComponent<SpriteRenderer>();
-        mechBodyRenderer = mechBodyParts[1].GetComponent<SpriteRenderer>();
-        mechLeftRenderer = mechBodyParts[2].GetComponent<SpriteRenderer>();
-        mechRightRenderer = mechBodyParts[3].GetComponent<SpriteRenderer>();
 
         // place holder, should be chosen from start menu in future
-        SetMech(0);
+        SetMech(PlayerPrefs.GetInt("mechType"));
     }
 
     // Update is called once per frame
@@ -111,30 +100,24 @@ public class PlayerController : MonoBehaviour
         switch (type)
         {
             case 0:
-                currMechType = MechType.Gun;
                 currBullet = bulletPrefabs[0];
-                mechHeadRenderer.sprite = mechSprites[0];
-                mechBodyRenderer.sprite = mechSprites[1];
-                mechLeftRenderer.sprite = mechSprites[2];
-                mechRightRenderer.sprite = mechSprites[3];
+                mechBodies[0].SetActive(true);
+                mechBodies[1].SetActive(false);
+                mechBodies[2].SetActive(false);
                 fireRate = 0.1f;
                 break;
             case 1:
-                currMechType = MechType.Missile;
                 currBullet = bulletPrefabs[1];
-                mechHeadRenderer.sprite = mechSprites[4];
-                mechBodyRenderer.sprite = mechSprites[5];
-                mechLeftRenderer.sprite = mechSprites[6];
-                mechRightRenderer.sprite = mechSprites[7];
+                mechBodies[0].SetActive(false);
+                mechBodies[1].SetActive(true);
+                mechBodies[2].SetActive(false);
                 fireRate = 0.2f;
                 break;
             case 2:
-                currMechType = MechType.Laser;
                 currBullet = bulletPrefabs[2];
-                mechHeadRenderer.sprite = mechSprites[8];
-                mechBodyRenderer.sprite = mechSprites[9];
-                mechLeftRenderer.sprite = mechSprites[10];
-                mechRightRenderer.sprite = mechSprites[11];
+                mechBodies[0].SetActive(false);
+                mechBodies[1].SetActive(false);
+                mechBodies[2].SetActive(true);
                 fireRate = 0.3f;
                 break;
             default:
@@ -150,7 +133,7 @@ public class PlayerController : MonoBehaviour
 
         if (!currBullet)
         {
-            SetMech((int)currMechType);
+            SetMech(PlayerPrefs.GetInt("mechType"));
         }
 
         bulletPosLeft = new Vector2(playerPos.x - 1.5f, playerPos.y + 2);

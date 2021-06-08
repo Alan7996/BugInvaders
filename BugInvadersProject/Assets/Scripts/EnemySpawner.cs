@@ -11,8 +11,6 @@ public class EnemySpawner : MonoBehaviour
     // total 5 spawn points
     public GameObject[] spawnPoints;
 
-    private float windowWidth = 15;
-
     private float spawnTime;
     private float spawnMaxTime = 5f;
     private float spawnMinTime = 2f;
