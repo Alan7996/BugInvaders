@@ -47,6 +47,7 @@ public class BodyBugController : MonoBehaviour
         hP -= dmg;
         if (hP <= 0)
         {
+            SoundManager.instance.AlienDeathSound();
             this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
             GameManager.instance.IncScore(score);
             this.gameObject.SetActive(false);

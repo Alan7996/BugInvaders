@@ -26,6 +26,8 @@ public class SoundManager : MonoBehaviour
 
     public AudioClip bgm;
 
+    public AudioClip alienDeathClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,5 +49,10 @@ public class SoundManager : MonoBehaviour
         {
             audio.PlayOneShot(mechLaserClip);
         }
+    }
+
+    public void AlienDeathSound()
+    {
+        audio.PlayOneShot(alienDeathClip);
     }
 }

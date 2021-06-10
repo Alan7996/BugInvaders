@@ -12,8 +12,8 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] spawnPoints;
 
     private float spawnTime;
-    private float spawnMaxTime = 5f;
-    private float spawnMinTime = 2f;
+    private float spawnMaxTime = 2f;
+    private float spawnMinTime = 0.5f;
 
     public bool stop = false;
 
