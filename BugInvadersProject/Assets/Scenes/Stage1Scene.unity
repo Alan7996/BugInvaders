@@ -597,7 +597,7 @@ Transform:
   - {fileID: 1192095222}
   - {fileID: 1821936358}
   m_Father: {fileID: 926995066}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -794,7 +794,7 @@ Transform:
   - {fileID: 1449075915}
   - {fileID: 1872654814}
   m_Father: {fileID: 926995066}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705378803
 GameObject:
@@ -822,11 +822,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705378803}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.026171, y: 0.946864, z: 3092.8838}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 926995066}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &705378805
 AudioSource:
@@ -1217,6 +1217,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1110341911}
+  - {fileID: 705378804}
+  - {fileID: 1324700793}
   - {fileID: 1824446401}
   - {fileID: 1290522711}
   - {fileID: 475645839}
@@ -1625,7 +1627,7 @@ Transform:
   - {fileID: 821265832}
   - {fileID: 1424166973}
   m_Father: {fileID: 926995066}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1294403299
 GameObject:
@@ -1748,12 +1750,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324700791}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 926995066}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1358683517
 GameObject:
@@ -2836,7 +2838,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 926995066}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1824446402
 MonoBehaviour:
@@ -2851,7 +2853,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 443350006}
-  bodyBug1Prefab: {fileID: 2883777722312340046, guid: bb39b9db43fc3a149a2840de09293361, type: 3}
+  enemyPrefabs:
+  - {fileID: 2883777722312340041, guid: bb39b9db43fc3a149a2840de09293361, type: 3}
+  - {fileID: 2810572516156411043, guid: 9dc5e0411d631dd4db6bf9926b64c2ed, type: 3}
+  enemyTypeCounts: 050000000500000000000000000000000000000000000000
+  bossEncounter: 0
   spawnPoints:
   - {fileID: 772283906}
   - {fileID: 379068609}

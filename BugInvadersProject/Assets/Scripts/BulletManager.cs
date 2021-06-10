@@ -61,25 +61,6 @@ public class BulletManager : MonoBehaviour
         bullet.transform.position = position;
     }
 
-    /*public void ResetAllBullet()
-    {
-        for (int i = bulletNotReady[0].Count - 1; i >= 0; i--)
-        {
-            ResetBullet(bulletNotReady[0][i]);
-            bulletNotReady[0].RemoveAt(i);
-        }
-        for (int i = bulletNotReady[1].Count - 1; i >= 0; i--)
-        {
-            ResetBullet(bulletNotReady[1][i]);
-            bulletNotReady[1].RemoveAt(i);
-        }
-        for (int i = bulletNotReady[2].Count - 1; i >= 0; i--)
-        {
-            ResetBullet(bulletNotReady[2][i]);
-            bulletNotReady[2].RemoveAt(i);
-        }
-    }*/
-
     private void Update()
     {
         mechType = (int)PlayerController.instance.mechType;
