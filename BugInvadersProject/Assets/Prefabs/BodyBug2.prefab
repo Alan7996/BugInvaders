@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBulletPrefab: {fileID: 0}
-  enemyType: 0
+  enemyType: 1
   hp: 4
   bugSpeed: 15
   score: 150

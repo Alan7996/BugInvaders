@@ -9,7 +9,7 @@ public enum EnemyType
 
 public class EnemySpawner : MonoBehaviour
 {
-    public Transform player;
+    public GameObject player;
 
     [SerializeField] Enemy[] enemyPrefabs;
 
@@ -60,7 +60,6 @@ public class EnemySpawner : MonoBehaviour
     public void SpawnEnemy()
     {
         if (enemyTypeList.Count == 0) return;
-
         int enemyTypeNum = Random.Range(0, enemyTypeList.Count);
         int spawnEnemy = enemyTypeList[enemyTypeNum];
         var enemy = enemyReady[spawnEnemy][0];

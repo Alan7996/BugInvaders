@@ -13,9 +13,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] int score;
     [SerializeField] bool doShoot;
 
-    private bool canShoot = false;
+    [SerializeField] float fireRate;
 
-    public Transform target;
+    private bool canShoot = false;
+    private float currTime = 0;
+
+    private GameObject target;
     private Vector3 direction;
 
     public int HP
@@ -44,10 +47,27 @@ public class Enemy : MonoBehaviour
         set { canShoot = value; }
     }
 
-    public virtual void Initialize(Transform targetPlayer)
+    public float FireRate
+    {
+        get { return fireRate; }
+        set { fireRate = value; }
+    }
+
+    public float CurrTime
+    {
+        get { return currTime; }
+        set { currTime = value; }
+    }
+    
+    public GameObject Target
+    {
+        get { return target; }
+    }
+
+    public virtual void Initialize(GameObject targetPlayer)
     {
         target = targetPlayer;
-        direction = (target.position - transform.position).normalized;
+        direction = (target.transform.position - transform.position).normalized;
 
         float rot_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);

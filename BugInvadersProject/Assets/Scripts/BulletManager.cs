@@ -6,21 +6,21 @@ public class BulletManager : MonoBehaviour
 {
     public static BulletManager instance;
 
-    [SerializeField] BulletController bulletGunPrefab;
-    [SerializeField] BulletController bulletMissilePrefab;
-    [SerializeField] BulletController bulletLaserPrefab;
+    [SerializeField] PlayerBulletController bulletGunPrefab;
+    [SerializeField] PlayerBulletController bulletMissilePrefab;
+    [SerializeField] PlayerBulletController bulletLaserPrefab;
 
-    List<BulletController>[] bulletReady = new List<BulletController>[3];
-    List<BulletController>[] bulletNotReady = new List<BulletController>[3];
+    List<PlayerBulletController>[] bulletReady = new List<PlayerBulletController>[3];
+    List<PlayerBulletController>[] bulletNotReady = new List<PlayerBulletController>[3];
 
-    List<BulletController> bulletGunReady = new List<BulletController>();
-    List<BulletController> bulletGunNotReady = new List<BulletController>();
+    List<PlayerBulletController> bulletGunReady = new List<PlayerBulletController>();
+    List<PlayerBulletController> bulletGunNotReady = new List<PlayerBulletController>();
 
-    List<BulletController> bulletMissileReady = new List<BulletController>();
-    List<BulletController> bulletMissileNotReady = new List<BulletController>();
+    List<PlayerBulletController> bulletMissileReady = new List<PlayerBulletController>();
+    List<PlayerBulletController> bulletMissileNotReady = new List<PlayerBulletController>();
 
-    List<BulletController> bulletLaserReady = new List<BulletController>();
-    List<BulletController> bulletLaserNotReady = new List<BulletController>();
+    List<PlayerBulletController> bulletLaserReady = new List<PlayerBulletController>();
+    List<PlayerBulletController> bulletLaserNotReady = new List<PlayerBulletController>();
 
     private int mechType;
 
@@ -81,7 +81,7 @@ public class BulletManager : MonoBehaviour
         }
     }
 
-    void ResetBullet(BulletController b)
+    void ResetBullet(PlayerBulletController b)
     {
         b.Reset();
         b.transform.position = new Vector3(100, 100, 100);

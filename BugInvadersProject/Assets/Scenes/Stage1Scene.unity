@@ -509,7 +509,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 443350005}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1111126788}
@@ -1162,7 +1162,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 889925660}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -10, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 443350006}
@@ -1740,9 +1740,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa341a1ccce4e447952687727f3c464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletGunPrefab: {fileID: 1369110510578060585, guid: 9dd15e4631671d940878f804f37f0068, type: 3}
-  bulletMissilePrefab: {fileID: 1369110510578060585, guid: 39b64e2c4651062448efcc7e1b75be2d, type: 3}
-  bulletLaserPrefab: {fileID: 1369110510578060585, guid: 3841d53140762c94abf938c1ed147124, type: 3}
+  bulletGunPrefab: {fileID: 353757860804258487, guid: 9dd15e4631671d940878f804f37f0068, type: 3}
+  bulletMissilePrefab: {fileID: 8136649332322805872, guid: 39b64e2c4651062448efcc7e1b75be2d, type: 3}
+  bulletLaserPrefab: {fileID: 8745410286939810887, guid: 3841d53140762c94abf938c1ed147124, type: 3}
 --- !u!4 &1324700793
 Transform:
   m_ObjectHideFlags: 0
@@ -2852,11 +2852,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ae4370a4b334864cbf6475b4b23dd0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 443350006}
+  player: {fileID: 443350005}
   enemyPrefabs:
   - {fileID: 2883777722312340041, guid: bb39b9db43fc3a149a2840de09293361, type: 3}
   - {fileID: 2810572516156411043, guid: 9dc5e0411d631dd4db6bf9926b64c2ed, type: 3}
-  enemyTypeCounts: 050000000500000000000000000000000000000000000000
+  - {fileID: 2511859717767616131, guid: 239836d0d1ff7d749a2392401c095847, type: 3}
+  - {fileID: 6968483275127381302, guid: 2f564470582801a4a949260108e8be33, type: 3}
+  enemyTypeCounts: 000000000000000003000000030000000000000000000000
   bossEncounter: 0
   spawnPoints:
   - {fileID: 772283906}
