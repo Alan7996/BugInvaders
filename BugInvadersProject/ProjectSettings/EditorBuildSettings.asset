@@ -9,15 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScene.unity
     guid: 173e15d61b90cc44a9e3cea785a08c38
   - enabled: 1
-    path: Assets/Scenes/SelectMechScene.unity
-    guid: c56d2e73fec6c4641b731a19dc72652e
-  - enabled: 1
     path: Assets/Scenes/Stage1Scene.unity
     guid: e96fa4ac96a86f84792597ee13a4d484
-  - enabled: 0
-    path: Assets/Scenes/Stage2Scene.unity
-    guid: cfdc0cb1bc1d0d94d86ff8fffb86f9fd
-  - enabled: 0
-    path: Assets/Scenes/Stage3Scene.unity
-    guid: 5bde45f21addf04418080dceef6c4b2c
   m_configObjects: {}

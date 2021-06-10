@@ -135,6 +135,8 @@ public class PlayerController : MonoBehaviour
         bulletPosLeft = new Vector2(playerPos.x - 1.5f, playerPos.y + 2);
         bulletPosRight = new Vector2(playerPos.x + 1.5f, playerPos.y + 2);
 
+        SoundManager.instance.MechShoot((int)mechType);
+
         BulletManager.instance.FireBullet((int)mechType, bulletPosLeft);
         BulletManager.instance.FireBullet((int)mechType, bulletPosRight);
     }

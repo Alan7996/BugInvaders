@@ -36,7 +36,7 @@ public class BulletManager : MonoBehaviour
 
         instance = this;
 
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 20; i++)
         {
             var bG = Instantiate(bulletGunPrefab);
             bulletGunReady.Add(bG);

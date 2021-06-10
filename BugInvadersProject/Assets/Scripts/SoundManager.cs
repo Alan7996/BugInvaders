@@ -1,0 +1,51 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SoundManager : MonoBehaviour
+{
+    public static SoundManager instance
+    {
+        get
+        {
+            if (s_instance == null)
+            {
+                s_instance = FindObjectOfType<SoundManager>();
+            }
+            return s_instance;
+        }
+    }
+
+    private static SoundManager s_instance;
+
+    private AudioSource audio;
+
+    public AudioClip mechGunClip;
+    public AudioClip mechMissileClip;
+    public AudioClip mechLaserClip;
+
+    public AudioClip bgm;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        audio = GetComponent<AudioSource>();
+        audio.clip = bgm;
+        audio.loop = true;
+        audio.Play();
+    }
+
+    public void MechShoot(int mechType)
+    {
+        if (mechType == 0)
+        {
+            audio.PlayOneShot(mechGunClip);
+        } else if (mechType == 1)
+        {
+            audio.PlayOneShot(mechMissileClip);
+        } else if (mechType == 2)
+        {
+            audio.PlayOneShot(mechLaserClip);
+        }
+    }
+}
