@@ -18,13 +18,17 @@ public class EnemyBulletController : Bullet
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "DetectionWall")
         {
-            PlayerController.instance.TakeDamage();
             Destroy(this.gameObject);
         }
-        else if (collision.tag == "DetectionWall")
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
         {
+            PlayerController.instance.TakeDamage();
             Destroy(this.gameObject);
         }
     }

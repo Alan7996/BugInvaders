@@ -5,6 +5,11 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+public enum GameState
+{
+    playing, paused, gameOver
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance
@@ -21,16 +26,24 @@ public class GameManager : MonoBehaviour
 
     private static GameManager m_instance;
 
+    public GameState gameState;
+
     public TMP_Text scoreText;
-    // temporary usage of highscore text to check funtionality
+    public TMP_Text resultScoreText;
     public TMP_Text highscoreText;
+    public GameObject gameOverImage;
+    public TMP_Text newHighScoreText;
+    public Button startMenuBtn;
 
     private int score = 0;
 
     private void Start()
     {
+        gameState = GameState.playing;
+        newHighScoreText.enabled = false;
+        gameOverImage.SetActive(false);
         scoreText.text = "SCORE : " + score;
-        highscoreText.enabled = false;
+        startMenuBtn.onClick.AddListener(OnStartMenuClick);
     }
 
     void Update()
@@ -52,14 +65,25 @@ public class GameManager : MonoBehaviour
 
     public void OnGameOver()
     {
+        gameState = GameState.gameOver;
+        EnemySpawner.instance.StopCoroutine();
+
         int highscore = PlayerPrefs.GetInt("Highscore");
         if (score > highscore)
         {
+            newHighScoreText.enabled = true;
             highscore = score;
             PlayerPrefs.SetInt("Highscore", score);
         }
 
-        highscoreText.text = highscore.ToString();
-        highscoreText.enabled = true;
+        resultScoreText.text = "SCORE : " + score;
+        highscoreText.text = "HIGHSCORE : " + highscore.ToString();
+
+        gameOverImage.SetActive(true);
+    }
+
+    private void OnStartMenuClick()
+    {
+        SceneManager.LoadScene(0);
     }
 }

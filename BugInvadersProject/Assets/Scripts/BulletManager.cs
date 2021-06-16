@@ -63,6 +63,7 @@ public class BulletManager : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.instance.gameState == GameState.gameOver) return;
         mechType = (int)PlayerController.instance.mechType;
         for (int i = bulletNotReady[mechType].Count - 1; i >= 0; i--)
         {

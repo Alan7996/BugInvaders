@@ -92,6 +92,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void Update()
     {
+        if (GameManager.instance.gameState == GameState.gameOver) return;
         transform.position += direction * BugSpeed * Time.deltaTime;
         if(doShoot && canShoot) { Fire(); }
     }

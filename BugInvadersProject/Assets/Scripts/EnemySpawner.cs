@@ -22,6 +22,20 @@ public class EnemySpawnClass
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner instance
+    {
+        get
+        {
+            if (e_instance == null)
+            {
+                e_instance = FindObjectOfType<EnemySpawner>();
+            }
+            return e_instance;
+        }
+    }
+
+    private static EnemySpawner e_instance;
+
     public GameObject player;
 
     [SerializeField] EnemySpawnClass[] enemySpawnInfo;
@@ -88,7 +102,7 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < 6; i++)
         {
-            if(enemySpawnInfo[i].enemyCount != 0)
+            if (enemySpawnInfo[i].enemyCount != 0)
             {
                 enemyTypeList.Add(i);
             }
@@ -111,5 +125,10 @@ public class EnemySpawner : MonoBehaviour
 
             spawnTime = Random.Range(spawnMaxTime, spawnMinTime);
         }
+    }
+
+    public void StopCoroutine()
+    {
+        StopAllCoroutines();
     }
 }

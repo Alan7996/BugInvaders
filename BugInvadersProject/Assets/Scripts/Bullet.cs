@@ -34,6 +34,7 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.instance.gameState == GameState.gameOver) return;
         transform.position += direction * bulletSpeed * Time.deltaTime;
     }
 

@@ -151,6 +151,6 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage()
     {
         GameManager.instance.OnGameOver();
-        //Destroy(this.gameObject);
+        Destroy(this.gameObject);
     }
 }
