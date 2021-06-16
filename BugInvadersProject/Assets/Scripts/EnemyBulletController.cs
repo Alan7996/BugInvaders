@@ -6,8 +6,14 @@ public class EnemyBulletController : Bullet
 {
     public void Initialize(Transform targetPlayer)
     {
-        //Target = targetPlayer;
         Direction = (targetPlayer.position - transform.position).normalized;
+    }
+
+    public void Initialize(Transform targetPlayer, bool left)
+    {
+        int degree = 10;
+        if (left) degree *= -1;
+        Direction = Quaternion.Euler(0, 0, degree) * (targetPlayer.position - transform.position).normalized;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

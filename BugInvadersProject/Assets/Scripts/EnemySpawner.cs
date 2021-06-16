@@ -7,13 +7,24 @@ public enum EnemyType
     body1, body2, shoot1, shoot2, big1, big2
 }
 
+[System.Serializable]
+public class EnemySpawnClass
+{
+    public Enemy enemyType;
+    public int enemyCount;
+
+    public EnemySpawnClass(Enemy enemy, int count)
+    {
+        enemyType = enemy;
+        enemyCount = count;
+    }
+}
+
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject player;
 
-    [SerializeField] Enemy[] enemyPrefabs;
-
-    [SerializeField] int[] enemyTypeCounts;
+    [SerializeField] EnemySpawnClass[] enemySpawnInfo;
 
     [SerializeField] bool bossEncounter;
 
@@ -48,9 +59,9 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < 6; i++)
         {
-            for (int j = 0; j < enemyTypeCounts[i]; j++)
+            for (int j = 0; j < enemySpawnInfo[i].enemyCount; j++)
             {
-                var bug = Instantiate(enemyPrefabs[i]);
+                var bug = Instantiate(enemySpawnInfo[i].enemyType);
                 enemyReady[i].Add(bug);
                 bug.transform.position = new Vector3(1000, -1000, -1000);
             }
@@ -77,7 +88,7 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < 6; i++)
         {
-            if(enemyTypeCounts[i] != 0)
+            if(enemySpawnInfo[i].enemyCount != 0)
             {
                 enemyTypeList.Add(i);
             }

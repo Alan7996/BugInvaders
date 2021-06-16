@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
 
     private bool canShoot = false;
     private float currTime = 0;
+    private bool startTime = false;
 
     private GameObject target;
     private Vector3 direction;
@@ -52,13 +53,17 @@ public class Enemy : MonoBehaviour
         get { return fireRate; }
         set { fireRate = value; }
     }
-
     public float CurrTime
     {
         get { return currTime; }
         set { currTime = value; }
     }
-    
+    public bool StartTime
+    {
+        get { return startTime; }
+        set { startTime = value; }
+    }
+
     public GameObject Target
     {
         get { return target; }
@@ -105,6 +110,14 @@ public class Enemy : MonoBehaviour
         else if (collision.tag == "DetectionWall")
         {
             this.gameObject.SetActive(false);
+        }
+        else if (collision.tag == "BugShootTrigger")
+        {
+            startTime = true;
+        }
+        else if (collision.tag == "BugStopShootTrigger")
+        {
+            startTime = false;
         }
     }
 }

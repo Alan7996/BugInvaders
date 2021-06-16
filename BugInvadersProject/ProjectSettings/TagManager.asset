@@ -8,6 +8,8 @@ TagManager:
   - Bomb
   - Enemy
   - DetectionWall
+  - BugShootTrigger
+  - BugStopShootTrigger
   layers:
   - Default
   - TransparentFX

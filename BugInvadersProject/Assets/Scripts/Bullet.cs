@@ -32,13 +32,6 @@ public class Bullet : MonoBehaviour
         set { direction = value; }
     }
 
-    /*private Transform target;
-    public Transform Target
-    {
-        get { return target; }
-        set { target = value; }
-    }*/
-
     void Update()
     {
         transform.position += direction * bulletSpeed * Time.deltaTime;
