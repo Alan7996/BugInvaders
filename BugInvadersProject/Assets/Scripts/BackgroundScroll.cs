@@ -24,6 +24,7 @@ public class BackgroundScroll : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager.instance.gameState != GameState.playing) return;
         transform.Translate(new Vector2(0, -1 * Time.deltaTime * speed));
     }
 }

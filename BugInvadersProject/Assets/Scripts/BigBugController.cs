@@ -8,7 +8,6 @@ public class BigBugController : Enemy
     {
         base.Update();
 
-        if (StartTime) CurrTime += Time.deltaTime;
         if (CurrTime > FireRate)
         {
             CurrTime = 0;

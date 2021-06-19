@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.instance.gameState != GameState.playing) return;
         movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         playerPos = player.transform.position;
 
@@ -93,6 +94,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager.instance.gameState != GameState.playing) return;
         rb.velocity = movement * moveSpeed;
     }
 
@@ -150,7 +152,21 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage()
     {
-        GameManager.instance.OnGameOver();
+        OnPlayerDeath();
+    }
+
+    public IEnumerator OnPlayerDeath()
+    {
+        // play player death animation & sound
+
+        yield return new WaitForSeconds(1);
+
         Destroy(this.gameObject);
+        GameManager.instance.OnGameOver();
+    }
+
+    public void OnPausePlayer()
+    {
+        rb.velocity = Vector2.zero;
     }
 }

@@ -92,9 +92,12 @@ public class Enemy : MonoBehaviour
 
     public virtual void Update()
     {
-        if (GameManager.instance.gameState == GameState.gameOver) return;
+        if (GameManager.instance.gameState != GameState.playing) return;
         transform.position += direction * BugSpeed * Time.deltaTime;
-        if(doShoot && canShoot) { Fire(); }
+
+        if (startTime) currTime += Time.deltaTime;
+
+        if (doShoot && canShoot) { Debug.Log(GameManager.instance.gameState); Fire(); }
     }
 
     public virtual void Fire()

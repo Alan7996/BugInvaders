@@ -11,6 +11,9 @@ public class StartMenu : MonoBehaviour
     public Button optionsBtn;
     public Button exitBtn;
 
+    public GameObject volumeImage;
+    public Button backVolBtn;
+
     public Button mechGunBtn;
     public Button mechMissileBtn;
     public Button mechLaserBtn;
@@ -19,9 +22,13 @@ public class StartMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        volumeImage.SetActive(false);
+        
         startBtn.onClick.AddListener(StartGame);
-        optionsBtn.onClick.AddListener(Options);
+        optionsBtn.onClick.AddListener(OnOptionsClickUI);
         exitBtn.onClick.AddListener(ExitGame);
+
+        backVolBtn.onClick.AddListener(OnBackVolClickUI);
 
         mechGunBtn.onClick.AddListener(SelectMechGun);
         mechMissileBtn.onClick.AddListener(SelectMechMissile);
@@ -41,9 +48,14 @@ public class StartMenu : MonoBehaviour
         backBtn.gameObject.SetActive(true);
     }
 
-    void Options()
+    public void OnOptionsClickUI()
     {
-        Debug.Log("Options clicked");
+        volumeImage.SetActive(true);
+    }
+
+    public void OnBackVolClickUI()
+    {
+        volumeImage.SetActive(false);
     }
 
     void ExitGame()

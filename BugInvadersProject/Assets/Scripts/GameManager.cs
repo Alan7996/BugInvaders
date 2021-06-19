@@ -28,22 +28,12 @@ public class GameManager : MonoBehaviour
 
     public GameState gameState;
 
-    public TMP_Text scoreText;
-    public TMP_Text resultScoreText;
-    public TMP_Text highscoreText;
-    public GameObject gameOverImage;
-    public TMP_Text newHighScoreText;
-    public Button startMenuBtn;
 
-    private int score = 0;
+    public int score = 0;
 
     private void Start()
     {
         gameState = GameState.playing;
-        newHighScoreText.enabled = false;
-        gameOverImage.SetActive(false);
-        scoreText.text = "SCORE : " + score;
-        startMenuBtn.onClick.AddListener(OnStartMenuClick);
     }
 
     void Update()
@@ -53,14 +43,15 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(1);
         } else if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
+            gameState = GameState.paused;
+            UIManager.instance.OnPauseUI();
         }
     }
 
     public void IncScore(int inc)
     {
         score += inc;
-        scoreText.text = "SCORE : " + score;
+        UIManager.instance.IncScoreUI(inc);
     }
 
     public void OnGameOver()
@@ -69,20 +60,17 @@ public class GameManager : MonoBehaviour
         EnemySpawner.instance.StopCoroutine();
 
         int highscore = PlayerPrefs.GetInt("Highscore");
-        if (score > highscore)
+        bool isHighScore = score > highscore;
+        if (isHighScore)
         {
-            newHighScoreText.enabled = true;
             highscore = score;
             PlayerPrefs.SetInt("Highscore", score);
         }
 
-        resultScoreText.text = "SCORE : " + score;
-        highscoreText.text = "HIGHSCORE : " + highscore.ToString();
-
-        gameOverImage.SetActive(true);
+        UIManager.instance.OnGameOverUI(isHighScore);
     }
 
-    private void OnStartMenuClick()
+    public void ToStartMenu()
     {
         SceneManager.LoadScene(0);
     }
