@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float fireRate;
 
     private bool canShoot = false;
+    private float totalTime = 0;
     private float currTime = 0;
     private bool startTime = false;
 
@@ -71,7 +72,15 @@ public class Enemy : MonoBehaviour
 
     public virtual void Initialize(GameObject targetPlayer)
     {
+        totalTime = 0;
+        currTime = 0;
+
         target = targetPlayer;
+        LookAtTarget();
+    }
+
+    private void LookAtTarget()
+    {
         direction = (target.transform.position - transform.position).normalized;
 
         float rot_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -96,9 +105,10 @@ public class Enemy : MonoBehaviour
         if (GameManager.instance.gameState != GameState.playing) return;
         transform.position += direction * BugSpeed * Time.deltaTime;
 
-        if (startTime) currTime += Time.deltaTime;
+        if (startTime) { currTime += Time.deltaTime; totalTime += Time.deltaTime; }
 
         if (doShoot && canShoot) { Debug.Log(GameManager.instance.gameState); Fire(); }
+        if (totalTime > 2) { totalTime = 0; LookAtTarget(); }
     }
 
     public virtual void Fire()
