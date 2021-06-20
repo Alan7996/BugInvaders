@@ -84,6 +84,7 @@ public class Enemy : MonoBehaviour
         if (hp <= 0)
         {
             SoundManager.instance.AlienDeathSound();
+            SoundManager.instance.MakeExplosion(transform.position);
             this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
             GameManager.instance.IncScore(this.Score);
             this.gameObject.SetActive(false);

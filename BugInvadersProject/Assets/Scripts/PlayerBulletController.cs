@@ -17,7 +17,7 @@ public class PlayerBulletController : Bullet
             gameObject.SetActive(false);
             IsHit = true;
         }
-        else if (collision.tag == "DetectionWall")
+        else if (collision.tag == "BulletDetectionWall")
         {
             gameObject.SetActive(false);
             IsHit = true;

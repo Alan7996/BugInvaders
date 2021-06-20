@@ -152,16 +152,19 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage()
     {
-        OnPlayerDeath();
+        StartCoroutine(OnPlayerDeath());
     }
 
     public IEnumerator OnPlayerDeath()
     {
         // play player death animation & sound
+        SoundManager.instance.PlayerDeathSound();
+        SoundManager.instance.MakeExplosion(playerPos);
+        player.SetActive(false);
+        GameManager.instance.gameState = GameState.gameOver;
 
         yield return new WaitForSeconds(1);
 
-        Destroy(this.gameObject);
         GameManager.instance.OnGameOver();
     }
 

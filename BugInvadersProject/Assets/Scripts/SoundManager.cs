@@ -27,6 +27,9 @@ public class SoundManager : MonoBehaviour
     public AudioClip bgm;
 
     public AudioClip alienDeathClip;
+    public AudioClip playerExplosionClip;
+
+    public GameObject explosionPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -54,5 +57,17 @@ public class SoundManager : MonoBehaviour
     public void AlienDeathSound()
     {
         audio.PlayOneShot(alienDeathClip);
+    }
+
+    public void PlayerDeathSound()
+    {
+        audio.PlayOneShot(playerExplosionClip);
+    }
+
+    public void MakeExplosion(Vector3 position)
+    {
+        //audio.PlayOneShot(explosionClip);
+        GameObject explodey = Instantiate(explosionPrefab, position, Quaternion.identity, transform);
+        Destroy(explodey, 25.0f);
     }
 }
