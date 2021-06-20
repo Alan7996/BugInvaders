@@ -4657,7 +4657,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: e80c39ce859c1e84d99cb64b773999a9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: efa9be364fe6fab43bf5b94df20520e3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6064,18 +6064,18 @@ MonoBehaviour:
   player: {fileID: 443350005}
   enemySpawnInfo:
   - enemyType: {fileID: 2883777722312340041, guid: bb39b9db43fc3a149a2840de09293361, type: 3}
-    enemyCount: 7
+    enemyCount: 3
   - enemyType: {fileID: 2810572516156411043, guid: 9dc5e0411d631dd4db6bf9926b64c2ed, type: 3}
-    enemyCount: 7
+    enemyCount: 3
   - enemyType: {fileID: 2511859717767616131, guid: 239836d0d1ff7d749a2392401c095847, type: 3}
-    enemyCount: 5
+    enemyCount: 4
   - enemyType: {fileID: 6968483275127381302, guid: 2f564470582801a4a949260108e8be33, type: 3}
-    enemyCount: 5
+    enemyCount: 4
   - enemyType: {fileID: 3600107751774883587, guid: 8830f02d866966c428647cb9cc85792f, type: 3}
-    enemyCount: 0
+    enemyCount: 5
   - enemyType: {fileID: 4764060026926959522, guid: 4c2698f4fd4c6d84082612179cbe3265, type: 3}
-    enemyCount: 0
-  bossEncounter: 0
+    enemyCount: 5
+  bossEncounter: 1
   spawnPoints:
   - {fileID: 772283906}
   - {fileID: 379068609}
@@ -6285,7 +6285,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: e80c39ce859c1e84d99cb64b773999a9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: efa9be364fe6fab43bf5b94df20520e3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

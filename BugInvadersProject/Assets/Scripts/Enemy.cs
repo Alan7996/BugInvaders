@@ -91,6 +91,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void TakeDamage(int dmg)
     {
+        if (hp <= 0) return;
         hp -= dmg;
         if (hp <= 0)
         {
@@ -98,12 +99,15 @@ public class Enemy : MonoBehaviour
             {
                 ItemDropper.instance.DropClassChangeItem(transform.position, direction);
             }
-            EnemySpawner.instance.DecTotalEnemyNum();
 
             SoundManager.instance.AlienDeathSound();
             SoundManager.instance.MakeExplosion(transform.position);
+
             this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+
             GameManager.instance.IncScore(this.Score);
+            EnemySpawner.instance.DecTotalEnemyNum();
+
             this.gameObject.SetActive(false);
         }
     }

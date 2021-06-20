@@ -113,5 +113,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletType: 3
-  bulletSpeed: 10
+  bulletSpeed: 13
   dmg: 1

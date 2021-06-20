@@ -34,7 +34,12 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         gameState = GameState.playing;
-        if (PlayerPrefs.GetInt("CurrentScore") != 0) score = PlayerPrefs.GetInt("CurrentScore");
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            PlayerPrefs.SetInt("CurrentScore", 0);
+        } else {
+            score = PlayerPrefs.GetInt("CurrentScore");
+        }
     }
 
     void Update()
@@ -52,7 +57,7 @@ public class GameManager : MonoBehaviour
     public void IncScore(int inc)
     {
         score += inc;
-        UIManager.instance.IncScoreUI(inc);
+        UIManager.instance.IncScoreUI(score);
     }
 
     public void OnGameOver()
