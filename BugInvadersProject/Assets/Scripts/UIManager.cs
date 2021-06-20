@@ -36,6 +36,10 @@ public class UIManager : MonoBehaviour
     public TMP_Text newHighScoreText;
     public Button startMenuBtn;
 
+    public GameObject stageClearImage;
+    public TMP_Text currentScoreText;
+    public Button nextStageBtn;
+
     public GameObject machineGunPossible;
     public GameObject missilePossible;
     public GameObject laserPossible;
@@ -49,6 +53,8 @@ public class UIManager : MonoBehaviour
         newHighScoreText.enabled = false;
         gameOverImage.SetActive(false);
 
+        stageClearImage.SetActive(false);
+
         machineGunPossible.SetActive(false);
         missilePossible.SetActive(false);
         laserPossible.SetActive(false);
@@ -60,6 +66,7 @@ public class UIManager : MonoBehaviour
         backBtn.onClick.AddListener(OnBackClickUI);
         exitBtn.onClick.AddListener(OnStartMenuClickUI);
         startMenuBtn.onClick.AddListener(OnStartMenuClickUI);
+        nextStageBtn.onClick.AddListener(OnNextStageBtnClickUI);
     }
 
     public void IncScoreUI (int score)
@@ -81,6 +88,17 @@ public class UIManager : MonoBehaviour
         highscoreText.text = "HIGHSCORE : " + PlayerPrefs.GetInt("Highscore").ToString();
 
         gameOverImage.SetActive(true);
+    }
+
+    public void OnStageClearUI()
+    {
+        currentScoreText.text = "SCORE : " + GameManager.instance.score;
+        stageClearImage.SetActive(true);
+    }
+
+    public void OnNextStageBtnClickUI()
+    {
+        GameManager.instance.LoadNextScene();
     }
 
     public void OnContinueClickUI()

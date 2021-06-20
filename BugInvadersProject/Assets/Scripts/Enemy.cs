@@ -98,6 +98,7 @@ public class Enemy : MonoBehaviour
             {
                 ItemDropper.instance.DropClassChangeItem(transform.position, direction);
             }
+            EnemySpawner.instance.DecTotalEnemyNum();
 
             SoundManager.instance.AlienDeathSound();
             SoundManager.instance.MakeExplosion(transform.position);
@@ -132,6 +133,7 @@ public class Enemy : MonoBehaviour
         else if (collision.tag == "DetectionWall")
         {
             this.gameObject.SetActive(false);
+            EnemySpawner.instance.DecTotalEnemyNum();
         }
         else if (collision.tag == "BugShootTrigger")
         {

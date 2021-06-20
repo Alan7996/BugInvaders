@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         gameState = GameState.playing;
+        if (PlayerPrefs.GetInt("CurrentScore") != 0) score = PlayerPrefs.GetInt("CurrentScore");
     }
 
     void Update()
@@ -67,11 +68,26 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("Highscore", score);
         }
 
+        PlayerPrefs.SetInt("CurrentScore", 0);
+
         UIManager.instance.OnGameOverUI(isHighScore);
+    }
+
+    public void OnStageClear()
+    {
+        gameState = GameState.gameOver;
+        PlayerPrefs.SetInt("CurrentScore", score);
+        UIManager.instance.OnStageClearUI();
+        PlayerController.instance.OnPausePlayer();
     }
 
     public void ToStartMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void LoadNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

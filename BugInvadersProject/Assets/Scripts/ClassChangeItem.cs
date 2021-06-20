@@ -38,6 +38,7 @@ public class ClassChangeItem : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.instance.gameState != GameState.playing) return;
         transform.position += direction * travelSpeed * Time.deltaTime;
     }
 

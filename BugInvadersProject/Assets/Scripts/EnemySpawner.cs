@@ -57,9 +57,10 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] spawnPoints;
 
     private float spawnTime;
-    private float spawnMaxTime = 2f;
-    private float spawnMinTime = 0.5f;
+    private float spawnMaxTime = 4f;
+    private float spawnMinTime = 1f;
 
+    private int totalEnemyNum = 0;
     public bool stop = false;
 
     private void Awake()
@@ -78,6 +79,8 @@ public class EnemySpawner : MonoBehaviour
                 var bug = Instantiate(enemySpawnInfo[i].enemyType);
                 enemyReady[i].Add(bug);
                 bug.transform.position = new Vector3(1000, -1000, -1000);
+                
+                totalEnemyNum++;
             }
         }
     }
@@ -85,12 +88,18 @@ public class EnemySpawner : MonoBehaviour
     public void SpawnEnemy()
     {
         if (enemyTypeList.Count == 0) return;
+
         int enemyTypeNum = Random.Range(0, enemyTypeList.Count);
         int spawnEnemy = enemyTypeList[enemyTypeNum];
         var enemy = enemyReady[spawnEnemy][0];
         enemyReady[spawnEnemy].RemoveAt(0);
         if (enemyReady[spawnEnemy].Count == 0) enemyTypeList.RemoveAt(enemyTypeNum);
 
+        if (enemyTypeList.Count == 0) {
+            // stage cleared when last enemy is gone
+            // stop spawning enemies
+            stop = true;
+        }
         enemy.transform.position = spawnPoints[Random.Range(0, 9)].transform.position;
         enemy.Initialize(player);
     }
@@ -130,5 +139,11 @@ public class EnemySpawner : MonoBehaviour
     public void StopCoroutine()
     {
         StopAllCoroutines();
+    }
+
+    public void DecTotalEnemyNum()
+    {
+        totalEnemyNum--;
+        if (totalEnemyNum == 0) GameManager.instance.OnStageClear();
     }
 }
