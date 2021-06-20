@@ -91,7 +91,7 @@ public class EnemySpawner : MonoBehaviour
         enemyReady[spawnEnemy].RemoveAt(0);
         if (enemyReady[spawnEnemy].Count == 0) enemyTypeList.RemoveAt(enemyTypeNum);
 
-        enemy.transform.position = spawnPoints[Random.Range(0, 5)].transform.position;
+        enemy.transform.position = spawnPoints[Random.Range(0, 9)].transform.position;
         enemy.Initialize(player);
     }
 

@@ -11,6 +11,7 @@ TagManager:
   - BugShootTrigger
   - BugStopShootTrigger
   - BulletDetectionWall
+  - ClassChangeItem
   layers:
   - Default
   - TransparentFX

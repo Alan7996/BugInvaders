@@ -36,6 +36,10 @@ public class UIManager : MonoBehaviour
     public TMP_Text newHighScoreText;
     public Button startMenuBtn;
 
+    public GameObject machineGunPossible;
+    public GameObject missilePossible;
+    public GameObject laserPossible;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +48,10 @@ public class UIManager : MonoBehaviour
 
         newHighScoreText.enabled = false;
         gameOverImage.SetActive(false);
+
+        machineGunPossible.SetActive(false);
+        missilePossible.SetActive(false);
+        laserPossible.SetActive(false);
 
         scoreText.text = "SCORE : " + GameManager.instance.score;
 
@@ -94,5 +102,32 @@ public class UIManager : MonoBehaviour
     private void OnStartMenuClickUI()
     {
         GameManager.instance.ToStartMenu();
+    }
+
+    public void ClassChangePossibleOn(int type)
+    {
+        if (type == 0)
+        {
+            machineGunPossible.SetActive(true);
+            missilePossible.SetActive(false);
+            laserPossible.SetActive(false);
+        } else if (type == 1)
+        {
+            machineGunPossible.SetActive(false);
+            missilePossible.SetActive(true);
+            laserPossible.SetActive(false);
+        } else if (type == 2)
+        {
+            machineGunPossible.SetActive(false);
+            missilePossible.SetActive(false);
+            laserPossible.SetActive(true);
+        }
+    }
+
+    public void ClassChangePossibleOff()
+    {
+        machineGunPossible.SetActive(false);
+        missilePossible.SetActive(false);
+        laserPossible.SetActive(false);
     }
 }

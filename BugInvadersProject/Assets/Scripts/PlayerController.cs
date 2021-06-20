@@ -36,6 +36,9 @@ public class PlayerController : MonoBehaviour
     private float fireRate = 0.1f;
     private float currTime = 0f;
 
+    private bool changeClass = false;
+    private int changeClassType = 0;
+
     public static PlayerController instance
     {
         get
@@ -77,18 +80,26 @@ public class PlayerController : MonoBehaviour
             Bomb();
         }
 
-        // should become a separate skill later on
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (changeClass)
         {
-            SetMech(0);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SetMech(1);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            SetMech(2);
+            if (Input.GetKeyDown(KeyCode.Alpha1) && changeClassType == 0)
+            {
+                SetMech(0);
+                UIManager.instance.ClassChangePossibleOff();
+                changeClass = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && changeClassType == 1)
+            {
+                SetMech(1);
+                UIManager.instance.ClassChangePossibleOff();
+                changeClass = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && changeClassType == 2)
+            {
+                SetMech(2);
+                UIManager.instance.ClassChangePossibleOff();
+                changeClass = false;
+            }
         }
     }
 
@@ -96,6 +107,18 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.instance.gameState != GameState.playing) return;
         rb.velocity = movement * moveSpeed;
+    }
+
+    public bool DuplicateClass(int type)
+    {
+        if ((int)mechType == type) return true;
+        return false;
+    }
+
+    public void ClassChangeItemGet(int type)
+    {
+        changeClass = true;
+        changeClassType = type;
     }
 
     public void SetMech(int type)

@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour
     private GameObject target;
     private Vector3 direction;
 
+    [SerializeField] float dropChance;
+
     public int HP
     {
         get { return hp; }
@@ -92,6 +94,11 @@ public class Enemy : MonoBehaviour
         hp -= dmg;
         if (hp <= 0)
         {
+            if (Random.Range(0f, 1f) < dropChance)
+            {
+                ItemDropper.instance.DropClassChangeItem(transform.position, direction);
+            }
+
             SoundManager.instance.AlienDeathSound();
             SoundManager.instance.MakeExplosion(transform.position);
             this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
@@ -107,7 +114,7 @@ public class Enemy : MonoBehaviour
 
         if (startTime) { currTime += Time.deltaTime; totalTime += Time.deltaTime; }
 
-        if (doShoot && canShoot) { Debug.Log(GameManager.instance.gameState); Fire(); }
+        if (doShoot && canShoot) { Fire(); }
         if (totalTime > 2) { totalTime = 0; LookAtTarget(); }
     }
 

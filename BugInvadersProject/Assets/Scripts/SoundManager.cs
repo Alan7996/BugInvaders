@@ -66,7 +66,6 @@ public class SoundManager : MonoBehaviour
 
     public void MakeExplosion(Vector3 position)
     {
-        //audio.PlayOneShot(explosionClip);
         GameObject explodey = Instantiate(explosionPrefab, position, Quaternion.identity, transform);
         Destroy(explodey, 25.0f);
     }

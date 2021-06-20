@@ -134,7 +134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1515754b2655b0342abdd5cb378ee165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyBulletPrefab: {fileID: 0}
+  enemyType: 0
   hp: 2
   bugSpeed: 10
   score: 100
-  target: {fileID: 0}
+  doShoot: 0
+  fireRate: 0
+  classChangeItemPrefab: {fileID: 2188822977152198356, guid: 74626a5e04eed404099ad06a3b8a7239, type: 3}
+  dropChance: 0.9

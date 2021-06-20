@@ -137,7 +137,9 @@ MonoBehaviour:
   enemyBulletPrefab: {fileID: 313298509739106749, guid: 80d1feabea0025e4993208bcebc64b73, type: 3}
   enemyType: 5
   hp: 32
-  bugSpeed: 2
+  bugSpeed: 3
   score: 400
   doShoot: 0
   fireRate: 2.5
+  classChangeItemPrefab: {fileID: 2188822977152198356, guid: 74626a5e04eed404099ad06a3b8a7239, type: 3}
+  dropChance: 0.3
