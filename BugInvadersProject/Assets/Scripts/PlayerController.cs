@@ -60,6 +60,8 @@ public class PlayerController : MonoBehaviour
 
         // place holder, should be chosen from start menu in future
         SetMech(PlayerPrefs.GetInt("mechType"));
+
+        UIManager.instance.BombCountUpdateUI(bombCount);
     }
 
     // Update is called once per frame
@@ -170,6 +172,7 @@ public class PlayerController : MonoBehaviour
     {
         if (bombCount == 0) return;
         bombCount--;
+        UIManager.instance.BombCountUpdateUI(bombCount);
         Instantiate(bombRingPrefab, playerPos, Quaternion.identity);
     }
 

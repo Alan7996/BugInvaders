@@ -21,8 +21,8 @@ public class BombRingController : MonoBehaviour
         
         rb.AddTorque(torque);
 
-        incScale = new Vector3(0.05f, 0.05f);
-        maxScale = new Vector2(35f, 35f);
+        incScale = new Vector3(0.1f, 0.1f);
+        maxScale = new Vector2(29f, 29f);
     }
 
     // Update is called once per frame
@@ -37,7 +37,7 @@ public class BombRingController : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<BodyBugController>().TakeDamage(bombDmg);
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(bombDmg);
         }
     }
 }

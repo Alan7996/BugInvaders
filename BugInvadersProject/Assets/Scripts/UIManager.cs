@@ -22,6 +22,8 @@ public class UIManager : MonoBehaviour
 
     public TMP_Text scoreText;
 
+    public TMP_Text bombCountText;
+
     public GameObject pauseImage;
     public Button continueBtn;
     public Button optionsBtn;
@@ -65,6 +67,11 @@ public class UIManager : MonoBehaviour
         exitBtn.onClick.AddListener(OnStartMenuClickUI);
         startMenuBtn.onClick.AddListener(OnStartMenuClickUI);
         nextStageBtn.onClick.AddListener(OnNextStageBtnClickUI);
+    }
+
+    public void BombCountUpdateUI (int count)
+    {
+        bombCountText.text = "x " + count;
     }
 
     public void IncScoreUI (int score)
