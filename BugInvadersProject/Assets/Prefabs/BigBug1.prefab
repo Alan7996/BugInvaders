@@ -88,7 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyBulletPrefab: {fileID: 313298509739106749, guid: 80d1feabea0025e4993208bcebc64b73, type: 3}
   enemyType: 4
-  hp: 24
+  hp: 28
   bugSpeed: 3
   score: 300
   doShoot: 0

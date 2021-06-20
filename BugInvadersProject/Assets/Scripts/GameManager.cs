@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
         } else {
             score = PlayerPrefs.GetInt("CurrentScore");
         }
+
+        UIManager.instance.IncScoreUI(score);
     }
 
     void Update()
@@ -49,8 +51,14 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(1);
         } else if (Input.GetKeyDown(KeyCode.Escape))
         {
-            gameState = GameState.paused;
-            UIManager.instance.OnPauseUI();
+            if (gameState != GameState.paused)
+            {
+                gameState = GameState.paused;
+                UIManager.instance.OnPauseUI();
+            } else
+            {
+                UIManager.instance.OnContinueClickUI();
+            }
         }
     }
 

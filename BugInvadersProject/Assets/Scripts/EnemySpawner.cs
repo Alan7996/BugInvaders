@@ -120,6 +120,17 @@ public class EnemySpawner : MonoBehaviour
         spawnTime = Random.Range(spawnMaxTime, spawnMinTime);
     }
 
+    private void Update()
+    {
+        if (bossEncounter && totalEnemyNum == 0)
+        {
+            // boss appears
+
+            // temporary game over for now
+            GameManager.instance.OnGameOver();
+        }
+    }
+
     IEnumerator waitSpawner()
     {
         yield
@@ -144,6 +155,6 @@ public class EnemySpawner : MonoBehaviour
     public void DecTotalEnemyNum()
     {
         totalEnemyNum--;
-        if (totalEnemyNum == 0) GameManager.instance.OnStageClear();
+        if (totalEnemyNum == 0 && !bossEncounter) GameManager.instance.OnStageClear();
     }
 }

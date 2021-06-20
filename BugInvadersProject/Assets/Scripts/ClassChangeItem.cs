@@ -53,6 +53,9 @@ public class ClassChangeItem : MonoBehaviour
                 UIManager.instance.ClassChangePossibleOn(mechType);
             }
             Destroy(this.gameObject);
+        } else if (collision.tag == "DetectionWall")
+        {
+            Destroy(this.gameObject);
         }
     }
 }

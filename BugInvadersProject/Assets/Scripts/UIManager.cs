@@ -59,8 +59,6 @@ public class UIManager : MonoBehaviour
         missilePossible.SetActive(false);
         laserPossible.SetActive(false);
 
-        scoreText.text = "SCORE : " + GameManager.instance.score;
-
         continueBtn.onClick.AddListener(OnContinueClickUI);
         optionsBtn.onClick.AddListener(OnOptionsClickUI);
         backBtn.onClick.AddListener(OnBackClickUI);
