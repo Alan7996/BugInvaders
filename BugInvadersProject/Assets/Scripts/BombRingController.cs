@@ -38,6 +38,9 @@ public class BombRingController : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             collision.gameObject.GetComponent<Enemy>().TakeDamage(bombDmg);
+        } else if (collision.tag == "Bullet")
+        {
+            Destroy(collision.gameObject);
         }
     }
 }

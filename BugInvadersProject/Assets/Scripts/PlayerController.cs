@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class ItemTypeCount
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 playerPos;
 
-    private int bombCount = 3;
+    public int bombCount = 3;
 
     private Vector2 movement;
     public float moveSpeed = 15f;
@@ -100,28 +101,6 @@ public class PlayerController : MonoBehaviour
         {
             Bomb();
         }
-
-        /*if (changeClass)
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1) && changeClassType == 0)
-            {
-                SetMech(0);
-                UIManager.instance.ClassChangePossibleOff();
-                changeClass = false;
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha2) && changeClassType == 1)
-            {
-                SetMech(1);
-                UIManager.instance.ClassChangePossibleOff();
-                changeClass = false;
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha3) && changeClassType == 2)
-            {
-                SetMech(2);
-                UIManager.instance.ClassChangePossibleOff();
-                changeClass = false;
-            }
-        }*/
     }
 
     private void FixedUpdate()

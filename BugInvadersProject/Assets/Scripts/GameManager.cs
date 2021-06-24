@@ -100,12 +100,13 @@ public class GameManager : MonoBehaviour
 
     public void ToStartMenu()
     {
+        Destroy(PlayerController.instance.gameObject);
+        Destroy(UIManager.instance.gameObject);
         SceneManager.LoadScene(0);
     }
 
     public void LoadNextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        SoundManager.instance.PlayBGM();
     }
 }

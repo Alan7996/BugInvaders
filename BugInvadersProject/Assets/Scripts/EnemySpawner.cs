@@ -36,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
 
     private static EnemySpawner e_instance;
 
-    public GameObject player;
+    private GameObject player;
 
     [SerializeField] EnemySpawnClass[] enemySpawnInfo;
 
@@ -65,7 +65,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        if (player == null) player = PlayerController.instance.gameObject;
+        if (player == null) player = PlayerController.instance.player.gameObject;
 
         enemyReady[0] = bodyBug1Ready;
         enemyReady[1] = bodyBug2Ready;

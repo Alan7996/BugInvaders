@@ -32,22 +32,10 @@ public class SoundManager : MonoBehaviour
 
     public GameObject explosionPrefab;
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         audio = GetComponent<AudioSource>();
-        audio.clip = bgm[SceneManager.GetActiveScene().buildIndex];
-        audio.loop = true;
-        audio.Play();
-    }
-
-    public void PlayBGM()
-    {
         audio.clip = bgm[SceneManager.GetActiveScene().buildIndex];
         audio.loop = true;
         audio.Play();

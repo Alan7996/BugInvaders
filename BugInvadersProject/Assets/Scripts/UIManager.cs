@@ -65,6 +65,14 @@ public class UIManager : MonoBehaviour
         exitBtn.onClick.AddListener(OnStartMenuClickUI);
         startMenuBtn.onClick.AddListener(OnStartMenuClickUI);
         nextStageBtn.onClick.AddListener(OnNextStageBtnClickUI);
+
+        BombCountUpdateUI();
+        DisplayCurrentItems();
+    }
+
+    private void BombCountUpdateUI()
+    {
+        bombCountText.text = "x " + PlayerController.instance.bombCount;
     }
 
     public void BombCountUpdateUI (int count)
@@ -154,6 +162,33 @@ public class UIManager : MonoBehaviour
         } else if (type == 2)
         {
             laserPossible[num - 1].SetActive(true);
+        }
+    }
+
+    private void DisplayCurrentItems()
+    {
+        int type = PlayerController.instance.itemTypeCount.itemType;
+        if (type == -1) return;
+
+        int num = PlayerController.instance.itemTypeCount.itemCount;
+        if (type == 0)
+        {
+            for (int i = 0; i < num; i++)
+            {
+                machineGunPossible[i].SetActive(true);
+            }
+        } else if (type == 1)
+        {
+            for (int i = 0; i < num; i++)
+            {
+                missilePossible[i].SetActive(true);
+            }
+        } else if (type == 2)
+        {
+            for (int i = 0; i < num; i++)
+            {
+                laserPossible[i].SetActive(true);
+            }
         }
     }
 }

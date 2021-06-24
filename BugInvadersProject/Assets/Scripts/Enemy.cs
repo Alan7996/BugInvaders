@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
 
     private GameObject target;
     private Vector3 direction;
+    private bool targetInRange = false;
 
     [SerializeField] float dropChance;
 
@@ -97,8 +98,8 @@ public class Enemy : MonoBehaviour
     {
         if (hp <= 0) return;
         hp -= dmg;
-        StartCoroutine(BlinkRed());
-        if (hp <= 0)
+        if (hp > 0) StartCoroutine(BlinkRed());
+        else 
         {
             if (Random.Range(0f, 1f) < dropChance)
             {
@@ -134,10 +135,15 @@ public class Enemy : MonoBehaviour
         if (GameManager.instance.gameState != GameState.playing) return;
         transform.position += direction * BugSpeed * Time.deltaTime;
 
-        if (startTime) { currTime += Time.deltaTime; totalTime += Time.deltaTime; }
+        if (startTime) { 
+            currTime += Time.deltaTime; 
+            totalTime += Time.deltaTime;
+
+            if ((transform.position - target.transform.position).sqrMagnitude < 300) targetInRange = true;
+            if (!targetInRange) LookAtTarget();
+        }
 
         if (doShoot && canShoot) { Fire(); }
-        if (totalTime > 2) { totalTime = 0; LookAtTarget(); }
     }
 
     public virtual void Fire()
