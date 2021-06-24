@@ -8,12 +8,16 @@ public class Enemy : MonoBehaviour
 
     public EnemyType enemyType;
 
+    private SpriteRenderer sprite;
+
     [SerializeField] int hp;
     [SerializeField] float bugSpeed;
     [SerializeField] int score;
     [SerializeField] bool doShoot;
 
     [SerializeField] float fireRate;
+
+    private float blinkTime = 0.1f;
 
     private bool canShoot = false;
     private float totalTime = 0;
@@ -93,6 +97,7 @@ public class Enemy : MonoBehaviour
     {
         if (hp <= 0) return;
         hp -= dmg;
+        StartCoroutine(BlinkRed());
         if (hp <= 0)
         {
             if (Random.Range(0f, 1f) < dropChance)
@@ -110,6 +115,18 @@ public class Enemy : MonoBehaviour
 
             this.gameObject.SetActive(false);
         }
+    }
+
+    public IEnumerator BlinkRed()
+    {
+        sprite.color = new Color(255, 0, 0);
+        yield return new WaitForSeconds(blinkTime);
+        sprite.color = new Color(255, 255, 255);
+    }
+
+    private void Start()
+    {
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     public virtual void Update()
