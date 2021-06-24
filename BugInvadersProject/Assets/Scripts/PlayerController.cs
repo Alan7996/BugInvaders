@@ -53,6 +53,11 @@ public class PlayerController : MonoBehaviour
 
     private static PlayerController m_instance;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -109,6 +114,11 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.instance.gameState != GameState.playing) return;
         rb.velocity = movement * moveSpeed;
+    }
+
+    public void ChangePos(Vector3 pos)
+    {
+        player.transform.position = pos;
     }
 
     public bool DuplicateClass(int type)

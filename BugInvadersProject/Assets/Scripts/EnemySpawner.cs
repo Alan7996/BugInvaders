@@ -65,6 +65,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
+        if (player == null) player = PlayerController.instance.gameObject;
+
         enemyReady[0] = bodyBug1Ready;
         enemyReady[1] = bodyBug2Ready;
         enemyReady[2] = shootBug1Ready;

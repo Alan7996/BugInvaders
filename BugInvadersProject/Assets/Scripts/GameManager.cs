@@ -37,11 +37,18 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             PlayerPrefs.SetInt("CurrentScore", 0);
-        } else {
+        }
+        else
+        {
             score = PlayerPrefs.GetInt("CurrentScore");
         }
 
-        UIManager.instance.IncScoreUI(score);
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            PlayerController.instance.ChangePos(new Vector3(0,-10,0));
+
+            UIManager.instance.IncScoreUI(score);
+        }
     }
 
     void Update()
@@ -102,5 +109,6 @@ public class GameManager : MonoBehaviour
     public void LoadNextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SoundManager.instance.PlayBGM();
     }
 }

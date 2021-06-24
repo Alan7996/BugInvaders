@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
@@ -24,18 +25,30 @@ public class SoundManager : MonoBehaviour
     public AudioClip mechMissileClip;
     public AudioClip mechLaserClip;
 
-    public AudioClip bgm;
+    public AudioClip[] bgm;
 
     public AudioClip alienDeathClip;
     public AudioClip playerExplosionClip;
 
     public GameObject explosionPrefab;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         audio = GetComponent<AudioSource>();
-        audio.clip = bgm;
+        audio.clip = bgm[SceneManager.GetActiveScene().buildIndex];
+        audio.loop = true;
+        audio.Play();
+    }
+
+    public void PlayBGM()
+    {
+        audio.clip = bgm[SceneManager.GetActiveScene().buildIndex];
         audio.loop = true;
         audio.Play();
     }
