@@ -141,10 +141,30 @@ public class PlayerController : MonoBehaviour
         {
             if (itemTypeCount.itemCount == 3) return;
             itemTypeCount = new ItemTypeCount(type, itemTypeCount.itemCount + 1);
+            if (itemTypeCount.itemCount == 3) FullItemStack(type);
         }
         else
         {
             itemTypeCount = new ItemTypeCount(type, 1);
+        }
+    }
+
+    private void FullItemStack(int type)
+    {
+        if (type == (int)mechType)
+        {
+            // Make bullet shoot faster
+            fireRate *= 0.75f;
+
+            // Display above change
+        }
+        else
+        {
+            // Change class
+            SetMech(type);
+
+            itemTypeCount = new ItemTypeCount(-1, 0);
+            UIManager.instance.ClassChangeAllOff();
         }
     }
 

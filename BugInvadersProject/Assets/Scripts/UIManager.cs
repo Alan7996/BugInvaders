@@ -125,7 +125,7 @@ public class UIManager : MonoBehaviour
         GameManager.instance.ToStartMenu();
     }
 
-    private void ClassChangeAllOff()
+    public void ClassChangeAllOff()
     {
         foreach (GameObject x in machineGunPossible)
         {
@@ -143,6 +143,7 @@ public class UIManager : MonoBehaviour
 
     public void ClassChangePossibleOn(int type, int num)
     {
+        if (num == 0) return;
         if (num == 1) ClassChangeAllOff();
         if (type == 0)
         {
