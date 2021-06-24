@@ -2,6 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class ItemTypeCount
+{
+    public int itemType;
+    public int itemCount;
+
+    public ItemTypeCount(int type, int count)
+    {
+        itemType = type;
+        itemCount = count;
+    }
+}
+
 public class PlayerController : MonoBehaviour
 {
     public enum MechType
@@ -36,8 +49,7 @@ public class PlayerController : MonoBehaviour
     private float fireRate = 0.1f;
     private float currTime = 0f;
 
-    private bool changeClass = false;
-    private int changeClassType = 0;
+    public ItemTypeCount itemTypeCount;
 
     public static PlayerController instance
     {
@@ -67,6 +79,8 @@ public class PlayerController : MonoBehaviour
         SetMech(PlayerPrefs.GetInt("mechType"));
 
         UIManager.instance.BombCountUpdateUI(bombCount);
+
+        itemTypeCount = new ItemTypeCount(-1, 0);
     }
 
     // Update is called once per frame
@@ -87,7 +101,7 @@ public class PlayerController : MonoBehaviour
             Bomb();
         }
 
-        if (changeClass)
+        /*if (changeClass)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1) && changeClassType == 0)
             {
@@ -107,7 +121,7 @@ public class PlayerController : MonoBehaviour
                 UIManager.instance.ClassChangePossibleOff();
                 changeClass = false;
             }
-        }
+        }*/
     }
 
     private void FixedUpdate()
@@ -121,16 +135,17 @@ public class PlayerController : MonoBehaviour
         player.transform.position = pos;
     }
 
-    public bool DuplicateClass(int type)
-    {
-        if ((int)mechType == type) return true;
-        return false;
-    }
-
     public void ClassChangeItemGet(int type)
     {
-        changeClass = true;
-        changeClassType = type;
+        if (itemTypeCount.itemType == type)
+        {
+            if (itemTypeCount.itemCount == 3) return;
+            itemTypeCount = new ItemTypeCount(type, itemTypeCount.itemCount + 1);
+        }
+        else
+        {
+            itemTypeCount = new ItemTypeCount(type, 1);
+        }
     }
 
     public void SetMech(int type)

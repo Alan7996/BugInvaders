@@ -93,7 +93,7 @@ MonoBehaviour:
   score: 300
   doShoot: 0
   fireRate: 2.5
-  dropChance: 0.4
+  dropChance: 0.7
 --- !u!1 &3600107753189552273
 GameObject:
   m_ObjectHideFlags: 0

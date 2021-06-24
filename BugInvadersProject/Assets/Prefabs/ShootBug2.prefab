@@ -141,4 +141,4 @@ MonoBehaviour:
   score: 200
   doShoot: 0
   fireRate: 2
-  dropChance: 0.3
+  dropChance: 0.4

@@ -47,11 +47,9 @@ public class ClassChangeItem : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            if (!collision.GetComponentInParent<PlayerController>().DuplicateClass(mechType))
-            {
-                collision.GetComponentInParent<PlayerController>().ClassChangeItemGet(mechType);
-                UIManager.instance.ClassChangePossibleOn(mechType);
-            }
+            collision.GetComponentInParent<PlayerController>().ClassChangeItemGet(mechType);
+            UIManager.instance.ClassChangePossibleOn(mechType, PlayerController.instance.itemTypeCount.itemCount);
+
             Destroy(this.gameObject);
         } else if (collision.tag == "DetectionWall")
         {

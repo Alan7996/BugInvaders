@@ -42,9 +42,9 @@ public class UIManager : MonoBehaviour
     public TMP_Text currentScoreText;
     public Button nextStageBtn;
 
-    public GameObject machineGunPossible;
-    public GameObject missilePossible;
-    public GameObject laserPossible;
+    public GameObject[] machineGunPossible;
+    public GameObject[] missilePossible;
+    public GameObject[] laserPossible;
 
     // Start is called before the first frame update
     void Start()
@@ -57,9 +57,7 @@ public class UIManager : MonoBehaviour
 
         stageClearImage.SetActive(false);
 
-        machineGunPossible.SetActive(false);
-        missilePossible.SetActive(false);
-        laserPossible.SetActive(false);
+        ClassChangeAllOff();
 
         continueBtn.onClick.AddListener(OnContinueClickUI);
         optionsBtn.onClick.AddListener(OnOptionsClickUI);
@@ -127,30 +125,34 @@ public class UIManager : MonoBehaviour
         GameManager.instance.ToStartMenu();
     }
 
-    public void ClassChangePossibleOn(int type)
+    private void ClassChangeAllOff()
     {
-        if (type == 0)
+        foreach (GameObject x in machineGunPossible)
         {
-            machineGunPossible.SetActive(true);
-            missilePossible.SetActive(false);
-            laserPossible.SetActive(false);
-        } else if (type == 1)
+            x.SetActive(false);
+        }
+        foreach (GameObject x in missilePossible)
         {
-            machineGunPossible.SetActive(false);
-            missilePossible.SetActive(true);
-            laserPossible.SetActive(false);
-        } else if (type == 2)
+            x.SetActive(false);
+        }
+        foreach (GameObject x in laserPossible)
         {
-            machineGunPossible.SetActive(false);
-            missilePossible.SetActive(false);
-            laserPossible.SetActive(true);
+            x.SetActive(false);
         }
     }
 
-    public void ClassChangePossibleOff()
+    public void ClassChangePossibleOn(int type, int num)
     {
-        machineGunPossible.SetActive(false);
-        missilePossible.SetActive(false);
-        laserPossible.SetActive(false);
+        if (num == 1) ClassChangeAllOff();
+        if (type == 0)
+        {
+            machineGunPossible[num - 1].SetActive(true);
+        } else if (type == 1)
+        {
+            missilePossible[num - 1].SetActive(true);
+        } else if (type == 2)
+        {
+            laserPossible[num - 1].SetActive(true);
+        }
     }
 }
